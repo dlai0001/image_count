@@ -3,7 +3,7 @@ from shovel import task
 
 @task
 def unit():
-    os.system("nosetests src/")
+    os.system("nosetests --with-coverage --cover-package=image_count src/")
 
 
 @task

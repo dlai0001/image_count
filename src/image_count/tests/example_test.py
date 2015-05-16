@@ -1,4 +1,4 @@
-from example import Example
+from image_count.example import Example
 import unittest2
 
 class TestExample(unittest2.TestCase):
