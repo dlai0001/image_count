@@ -12,6 +12,8 @@
 	Also creating executable in env/bin/python
 	Installing setuptools, pip...done.
 
+Then activate it when you're ready to develop.
+
 	Davids-MacBook-Pro:image_count dlai$ source env/bin/activate
 	(env)Davids-MacBook-Pro:image_count dlai$
 
@@ -19,7 +21,16 @@
 
 	> pip install -r requirements.txt
 
+At this point you can run any of shovel commands in the next section.
+
+
+3.  After you're doe developing.  Use `deactivate` to exit your virtual env.
+
+	> deactivate
+
+
 ## Available Commands ##
+
 
 * Run the program.
 
@@ -30,5 +41,6 @@
 	> shovel test.unit
 
 	> shovel test.integration
+
 
 
