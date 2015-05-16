@@ -34,7 +34,7 @@ At this point you can run any of shovel commands in the next section.
 
 * Run the program.
 
-	> python ./image_count.py 
+	> ./image_count.py 
 
 * Run the unit or integration tests.
 
@@ -42,5 +42,8 @@ At this point you can run any of shovel commands in the next section.
 
 	> shovel test.integration
 
+* Run watcher that reruns unit test upon any files changed.
+
+	> shovel watch
 
 
