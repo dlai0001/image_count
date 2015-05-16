@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/dlai0001/image_count.svg)](https://travis-ci.org/dlai0001/image_count)
+
 ## Requirements ## 
 * Python 2.7 /w PyPi (pip)
 * Virtual Env
