@@ -1,11 +1,10 @@
 # Exclude compiled python modules
 # only include source directories
 *
-*.pyc
 !/src/*.py
 !/shovel/*.py
 !/tests/*.py
 !image_count.py
 !README.MD
 !.travis.yml
-
+*.pyc

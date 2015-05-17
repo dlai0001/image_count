@@ -4,8 +4,11 @@ from watchdog.events import PatternMatchingEventHandler
 from shovel import task
 import os
 
-class SrcWatcher(PatternMatchingEventHandler):
+class SourceWatcher(PatternMatchingEventHandler):
     patterns = ["*.py"]
+
+    def __init__(self):
+		os.system("shovel test.unit")
 
     def process(self, event):
         
@@ -19,13 +22,14 @@ class SrcWatcher(PatternMatchingEventHandler):
         self.process(event)
 
     def on_created(self, event):
-        self.process(event)    
+        self.process(event)
+
 
 
 @task
 def watch_src():
     observer = Observer()
-    observer.schedule(SrcWatcher(), path="src", recursive=True)
+    observer.schedule(SourceWatcher(), path="src", recursive=True)
     observer.start()
 
     print("\nWatching for file changes to src files.  Press ^C to exit.\n")
