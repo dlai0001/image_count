@@ -7,14 +7,12 @@ import os
 class SourceWatcher(PatternMatchingEventHandler):
     patterns = ["*.py"]
 
-    def __init__(self):
-		os.system("shovel test.unit")
-
     def process(self, event):
         
         # the file will be processed there
         print(event.src_path, event.event_type)  # print now only for degug
-        os.system("shovel test.unit")
+
+        os.system("shovel test.path " + os.path.dirname(event.src_path))
 
         print("\nWatching for file changes to src files.  Press ^C to exit.\n")
 
@@ -28,6 +26,8 @@ class SourceWatcher(PatternMatchingEventHandler):
 
 @task
 def watch_src():
+    os.system("shovel test.unit")
+
     observer = Observer()
     observer.schedule(SourceWatcher(), path="src", recursive=True)
     observer.start()
