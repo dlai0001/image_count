@@ -7,5 +7,4 @@
 !image_count.py
 !README.MD
 !.travis.yml
-!setup.cfg
 *.pyc

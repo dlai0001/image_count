@@ -40,12 +40,17 @@ At this point you can run any of shovel commands in the next section.
 
 * Run the unit or integration tests.
 
-	> shovel test.unit
+	> shovel test.unit	# performs unit test with code coverage
 
-	> shovel test.integration
+	> shovel test.integration # performs integration tests, no code coverage
 
 * Run watcher that reruns unit test upon any files changed.
 
 	> shovel watch
+
+Note about watch: To it will only run unitests in the same package level
+as the file that's affected in order to optimize the scope of unit tests
+that are run on each save.  It will do code coverage, but only for files
+tested.
 
 
