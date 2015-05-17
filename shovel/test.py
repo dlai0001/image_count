@@ -9,3 +9,4 @@ def unit():
 @task
 def integration():
     os.system("nosetests tests/")
+
