@@ -1,13 +1,13 @@
 [![Build Status](https://travis-ci.org/dlai0001/image_count.svg)](https://travis-ci.org/dlai0001/image_count)
 
-## Requirements ## 
+## Requirements
 * Python 2.7 /w PyPi (pip)
 * Virtual Env
 	[sudo] pip install virtualenv
 
-## Dev Setup ##
+## Dev Setup
 
-1. Setup virtual env to ensure you have a clean Python Sandbox.
+Setup virtual env to ensure you have a clean Python Sandbox.
 
 	Davids-MacBook-Pro:image_count dlai$ virtualenv env
 	New python executable in env/bin/python2.7
@@ -19,19 +19,19 @@ Then activate it when you're ready to develop.
 	Davids-MacBook-Pro:image_count dlai$ source env/bin/activate
 	(env)Davids-MacBook-Pro:image_count dlai$
 
-2.  Install required dependencies.
+Install required dependencies.
 
 	> pip install -r requirements.txt
 
 At this point you can run any of shovel commands in the next section.
 
 
-3.  After you're doe developing.  Use `deactivate` to exit your virtual env.
+After you're done developing.  Use `deactivate` to exit your virtual env.
 
 	> deactivate
 
 
-## Available Commands ##
+## Available Commands
 
 
 * Run the program.
