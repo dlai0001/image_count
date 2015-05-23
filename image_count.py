@@ -2,6 +2,7 @@
 import argparse
 import sys
 import os
+import pprint
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-k','--key', help='Api Key', required=True)
@@ -12,6 +13,7 @@ sys.path.insert(0, localSrcPath)
 
 from image_count.movie_image_counter import MovieImageCounter
 movie_image_counter = MovieImageCounter(args.key)
-count = movie_image_counter.get_image_count()
+result = movie_image_counter.get_image_counts()
 
-print "Number of images counted for movies in theater: " + str(count)
+printer = pprint.PrettyPrinter(indent=4)
+printer.pprint(result)

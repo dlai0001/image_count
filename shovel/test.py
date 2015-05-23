@@ -25,3 +25,8 @@ def integration(test_type = None):
 @task
 def path(path):
 	os.system("nosetests " + path + "/" + COVERAGE_SETTINGS)
+
+
+@task
+def lint():
+    os.system("pylint src/image_count/")

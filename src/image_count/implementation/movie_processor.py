@@ -1,18 +1,23 @@
-
-class CountImage(object):
-
+class MovieProcessor(object):
     IMAGE_EXTENSIONS = ['.png', '.jpg', '.jpeg', '.gif', '.tiff']
+    IMDB_URL_PREFIX = "http://www.imdb.com/title/tt"
 
     def __init__(self):
         pass
 
     def get_image_count(self, movie_entries):
-        total_count = 0
+        movies = []
 
         for movie_entry in movie_entries:
-            total_count += self.__count_images(movie_entry)
+            imdb_id = movie_entry["alternate_ids"]["imdb"]
+            movie = {
+                "count": self.__count_images(movie_entry),
+                "url": self.IMDB_URL_PREFIX + imdb_id,
+                "imdb_id": imdb_id
+            }
+            movies.append(movie)
 
-        return total_count
+        return movies
 
     def __count_images(self, movie_entry):
         return self.__count_image_recursive(movie_entry)

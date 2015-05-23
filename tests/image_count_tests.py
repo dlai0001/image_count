@@ -3,8 +3,7 @@ from image_count.movie_image_counter import MovieImageCounter
 from nose.plugins.attrib import attr
 import unittest2
 from unittest2.case import skip
-import datetime, time
-
+import datetime
 
 
 class ExampleUnitTest(unittest2.TestCase):
@@ -15,6 +14,7 @@ class ExampleUnitTest(unittest2.TestCase):
     When a reqest to get the image count is made
     It should return the count of all images (defined as properties with image extensions in file name)
     """
+
     @attr("functional")
     def test_should_return_count_of_images(self):
         api_key = "fake"
@@ -22,20 +22,26 @@ class ExampleUnitTest(unittest2.TestCase):
         data_access = MovieDataAccess(api_key, page_size=5, request_lib=MockRequest(mock_response))
 
         sut = MovieImageCounter(api_key, data_access=data_access)
-        actual = sut.get_image_count()
+        actual = sut.get_image_counts()
 
-        self.assertEquals(actual, 8)
+        self.assertEquals(actual[0]['count'], 4)
+        self.assertEquals(actual[0]['url'], u"http://www.imdb.com/title/tt1392190")
+        self.assertEquals(actual[0]['imdb_id'], u"1392190")
+
+        self.assertEquals(actual[1]['count'], 4)
+        self.assertEquals(actual[1]['url'], u"http://www.imdb.com/title/tt2222190")
+        self.assertEquals(actual[1]['imdb_id'], u"2222190")
 
     @attr("performance")
     @skip("not yet implemented")
     def test_should_return_count_in_under_8_seconds(self):
         api_key = "fake"
-        mock_request_with_large_payload = None # TODO
+        mock_request_with_large_payload = None  # TODO
         data_access = MovieDataAccess(api_key, page_size=5, request_lib=mock_request_with_large_payload)
 
         start_time = datetime.datetime.now()
         sut = MovieImageCounter(api_key, data_access=data_access)
-        sut.get_image_count()
+        sut.get_image_counts()
         ellapsed_time = datetime.datetime.now() - start_time
 
         self.assertLessEqual(ellapsed_time, datetime.timedelta(seconds=8))
@@ -49,7 +55,6 @@ class ExampleUnitTest(unittest2.TestCase):
     @skip("not yet implemented")
     def test_should_throw_if_api_timeout(self):
         self.fail("not yet implemented")
-
 
 
 class MockRequest(object):
@@ -144,8 +149,8 @@ mock_response_with_2_movies = """
                         }
                     },
                     {
-                        "id": "771028470",
-                        "title": "Incredibles",
+                        "id": "771028475",
+                        "title": "The Others",
                         "year": 2015,
                         "mpaa_rating": "R",
                         "runtime": 120,
@@ -204,7 +209,7 @@ mock_response_with_2_movies = """
                             }
                         ],
                         "alternate_ids": {
-                            "imdb": "1392190"
+                            "imdb": "2222190"
                         },
                         "links": {
                             "self": "http://api.rottentomatoes.com/api/public/v1.0/movies/771028170.json",

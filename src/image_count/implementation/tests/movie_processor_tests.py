@@ -1,34 +1,40 @@
-from image_count.utilities.count_image import CountImage
-from nose.plugins.attrib import attr
+from image_count.implementation.movie_processor import MovieProcessor
 import unittest2
 import json
 
 
-class CountingImageTests(unittest2.TestCase):
-
+class MovieProcessorTests(unittest2.TestCase):
     def test_count_returns_correct_image_count(self):
-        sut = CountImage()
+        sut = MovieProcessor()
 
         movies = json.loads(movie_entries)
 
         actual = sut.get_image_count(movies)
-        self.assertEqual(actual, 8)
+
+        self.assertEquals(actual[0]['count'], 4)
+        self.assertEquals(actual[0]['url'], u"http://www.imdb.com/title/tt1392190")
+        self.assertEquals(actual[0]['imdb_id'], u"1392190")
+
+        self.assertEquals(actual[1]['count'], 4)
+        self.assertEquals(actual[1]['url'], u"http://www.imdb.com/title/tt2222550")
+        self.assertEquals(actual[1]['imdb_id'], u"2222550")
 
     def test_count_returns_zero_if_no_images(self):
-        sut = CountImage()
+        sut = MovieProcessor()
 
         movies = json.loads(movie_entries_no_images)
 
         actual = sut.get_image_count(movies)
-        self.assertEqual(actual, 0)
+        self.assertEqual(actual[0]["count"], 0)
+        self.assertEqual(actual[1]["count"], 0)
 
     def test_count_returns_zero_if_no_movies(self):
-        sut = CountImage()
+        sut = MovieProcessor()
 
         movies = []
 
         actual = sut.get_image_count(movies)
-        self.assertEqual(actual, 0)
+        self.assertEqual(len(actual), 0)
 
 
 movie_entries = """
@@ -105,7 +111,7 @@ movie_entries = """
                         }
                     },
                     {
-                        "id": "771028170",
+                        "id": "771028175",
                         "title": "Incredibles",
                         "year": 2015,
                         "mpaa_rating": "R",
@@ -165,7 +171,7 @@ movie_entries = """
                             }
                         ],
                         "alternate_ids": {
-                            "imdb": "1392190"
+                            "imdb": "2222550"
                         },
                         "links": {
                             "self": "http://api.rottentomatoes.com/api/public/v1.0/movies/771028170.json",
