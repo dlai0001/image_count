@@ -36,13 +36,21 @@ After you're done developing.  Use `deactivate` to exit your virtual env.
 
 * Run the program.
 
-	> ./image_count.py 
+	> ./image_count.py -k ROTTEN_TOMATOES_API_KEY
 
 * Run the unit or integration tests.
 
 	> shovel test.unit	# performs unit test with code coverage
 
 	> shovel test.integration # performs integration tests, no code coverage
+
+* Run integration tagged by feature/test type
+
+	> shovel test.integration performance # run only tests tagged with performance.
+
+* Run all tests.
+
+	> shovel test.all
 
 * Run watcher that reruns unit test upon any files changed.
 
@@ -53,4 +61,19 @@ as the file that's affected in order to optimize the scope of unit tests
 that are run on each save.  It will do code coverage, but only for files
 tested.
 
+## About the design
 
+* A movie image is defined as any property in the rotten tomatoes response
+that contains a image extension in the file name.
+
+* Unit tests placed in corresponding './tests' folder of their respective
+module to aid in making large refactoring easier.  This also works with
+running the isolated set of affected unit tests (with code coverage) via
+the `shovel watch` task
+
+* Dependency injection done via constructor injection to aid in substituting
+out module dependencies for unit and integration testing.
+
+* Tests on the integration level are tagged, so they can be run selectively.
+This allows developers to run slower running tests filtered by feature or type
+without running the whole suite.
