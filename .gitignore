@@ -1,9 +1,9 @@
 # Exclude compiled python modules
 # only include source directories
 *
-!/src/*.py
-!/shovel/*.py
-!/tests/*.py
+!/src
+!/shovel
+!/tests
 !image_count.py
 !README.MD
 !.travis.yml
