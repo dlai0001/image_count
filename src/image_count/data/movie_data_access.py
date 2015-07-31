@@ -5,7 +5,7 @@ import json
 class MovieDataAccess(object):
 
     API_URL = "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json"
-    DEFAULT_PAGE_SIZE = 30
+    DEFAULT_PAGE_SIZE = 50
 
     def __init__(self, api_key, page_size=10, request_lib=requests):
         self._request_lib = request_lib

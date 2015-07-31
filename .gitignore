@@ -1,3 +1,5 @@
 # Exclude compiled python modules
 # only include source directories
 *.pyc
+.idea
+dev

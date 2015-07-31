@@ -9,12 +9,23 @@ class MovieProcessor(object):
         movies = []
 
         for movie_entry in movie_entries:
-            imdb_id = movie_entry["alternate_ids"]["imdb"]
-            movie = {
-                "count": self.__count_images(movie_entry),
-                "url": self.IMDB_URL_PREFIX + imdb_id,
-                "imdb_id": imdb_id
-            }
+            try:
+                imdb_id = movie_entry["alternate_ids"]["imdb"]
+            except:
+                imdb_id = None
+
+            if imdb_id is not None:
+                movie = {
+                    "count": self.__count_images(movie_entry),
+                    "url": self.IMDB_URL_PREFIX + imdb_id,
+                    "imdb_id": imdb_id
+                }
+            else:
+                movie = {
+                    "count": self.__count_images(movie_entry),
+                    "url": None,
+                    "imdb_id": None
+                }
             movies.append(movie)
 
         return movies
@@ -41,6 +52,6 @@ class MovieProcessor(object):
                             image_count += 1
                             break
                     except:
-                        pass
+                        pass #bad unexpected data type
 
         return image_count
